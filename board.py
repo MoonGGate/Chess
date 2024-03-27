@@ -1,7 +1,6 @@
 class Game:
     
     ### Need classes for each fig ###
-    ### Will contain init pos, movement funcs (beat/move/switch) ###
 
     ####################################
     ##       Initial Game State       ##
@@ -36,27 +35,27 @@ class Game:
             -6: "Black King",
         }
 
-        self.emptySpaceLocation =  ['a6', 'b6', 'c6', 'd6', 'e6', 'f6', 'g6', 'h6',
-                                    'a5', 'b5', 'c5', 'd5', 'e5', 'f5', 'g5', 'h5',
-                                    'a4', 'b4', 'c4', 'd4', 'e4', 'f4', 'g4', 'h4',
-                                    'a3', 'b3', 'c3', 'd3', 'e3', 'f3', 'g3', 'h3']
+        self.emptySpaceLocation =  [['a',6], ['b',6], ['c',6], ['d',6], ['e',6], ['f',6], ['g',6], ['h',6],
+                                    ['a',5], ['b',5], ['c',5], ['d',5], ['e',5], ['f',5], ['g',5], ['h',5],
+                                    ['a',4], ['b',4], ['c',4], ['d',4], ['e',4], ['f',4], ['g',4], ['h',4],
+                                    ['a',3], ['b',3], ['c',3], ['d',3], ['e',3], ['f',3], ['g',3], ['h',3]]
     
         self.rows = len(self.board)
         self.cols = len(self.board[0])
-        self.checkboard()
+        self.checkBoard()
 
     def getEmptySpaceLocations(self):
         return self.emptySpaceLocation
     
-    def print_board(self):
+    def printBoard(self):
         for i in self.board:
             print(i)
 
     ## Creates a checkboard with values on the grid, such as a8, b5, c3, etc
-    def checkboard(self):
+    def checkBoard(self):
         for row in range(self.rows):
             for col in range(self.cols):
-                self.board[row][col] = [chr(97 + col) + str(8 - row)]
+                self.board[row][col] = [chr(97 + col), 8 - row]
 
         return self.board
     
