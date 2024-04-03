@@ -7,8 +7,8 @@ class Game:
     ####################################
 
     def __init__(self):
-        self.board = [[[], [], [], [], [], [], [], []], 
-                      [[], [], [], [], [], [], [], []],
+        self.board = [[[], [], [], [], [], [], [], []],     # Only idea is to use it for graphics
+                      [[], [], [], [], [], [], [], []],     # Can remove/replace for something else
                       [[], [], [], [], [], [], [], []],
                       [[], [], [], [], [], [], [], []],
                       [[], [], [], [], [], [], [], []],
@@ -17,23 +17,7 @@ class Game:
                       [[], [], [], [], [], [], [], []]]
         
         # White are positive values from 1 to 6, Black are negative values from -1 to -6.
-        self.squareList = {
-            0: "Empty", 
-
-            1: "White Pawn", 
-            2: "White Knight",
-            3: "White Bishop", 
-            4: "White Rook", 
-            5: "White Queen", 
-            6: "White King",
-
-            -1: "Black Pawn", 
-            -2: "Black Knight", 
-            -3: "Black Bishop", 
-            -4: "Black Rook", 
-            -5: "Black Queen", 
-            -6: "Black King",
-        }
+        self.figureLocations = {}
 
         self.emptySpaceLocation =  [['a',6], ['b',6], ['c',6], ['d',6], ['e',6], ['f',6], ['g',6], ['h',6],
                                     ['a',5], ['b',5], ['c',5], ['d',5], ['e',5], ['f',5], ['g',5], ['h',5],
@@ -53,7 +37,7 @@ class Game:
 
     ## Creates a checkboard with values on the grid, such as a8, b5, c3, etc
     def checkBoard(self):
-        for row in range(self.rows):
+        for row in range(self.rows):                            # WHY?????? #
             for col in range(self.cols):
                 self.board[row][col] = [chr(97 + col), 8 - row]
 
