@@ -5,7 +5,7 @@ class Game:
     ####################################
     ##       Initial Game State       ##
     ####################################
-    # tst1
+    
     def __init__(self):
         self.board = [[[], [], [], [], [], [], [], []],     # Only idea is to use it for graphics
                       [[], [], [], [], [], [], [], []],     # Can remove/replace for something else
