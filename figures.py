@@ -24,8 +24,8 @@ class Figure:
         return pos[0] + str(pos[1])
     
     # Used to convert pos back to lst
-    # def convertPosToList(self, pos):
-    #     return [pos[0], int(pos[1])]
+    def convertPosToList(self, pos):
+        return [pos[0], int(pos[1])]
     
     # Example movement func for pawn class (Can be inherited)
     def setPosition(self, pos):
@@ -34,7 +34,7 @@ class Figure:
             self.possibleMoves = self.getPossibleMoves()
             self.possibleBeatings = self.getPossibleBeatings()
             self.gameInstance.figureLocations[self.convertPosToString(pos)] = self
-            return print('Obj created/updated')
+            return
 
         elif pos in self.possibleMoves:
             del self.gameInstance.figureLocations[self.convertPosToString(self.pos)]
@@ -45,11 +45,16 @@ class Figure:
             self.possibleMoves = self.getPossibleMoves()
             self.possibleBeatings = self.getPossibleBeatings()
 
+
+            # update figures when a move is executed
+            if self.figLocations:
+                for obj in self.figLocations:
+                    self.figLocations[obj].setPosition(self.convertPosToList(obj))
         else:
             return print('Invalid Move')
         return print('Moved successfully')
     
-    # Example beat func for pawn class (Can be inherited)
+    
     def beatFigure(self, pos):
         if pos in self.possibleBeatings:
             self.gameInstance.emptySpaceLocation.append(self.pos)
