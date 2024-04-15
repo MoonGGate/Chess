@@ -14,7 +14,7 @@ class Figure:
 
     # Checks if passed pos is empty (Can be inherited)
     def posCheck(self, pos):
-        if pos in self.gameInstance.getEmptySpaceLocations():
+        if pos in self.gameInstance.emptySpaceLocation:
             return True
         else:
             return False
@@ -33,23 +33,23 @@ class Figure:
         if pos == self.pos:
             self.possibleMoves = self.getPossibleMoves()
             self.possibleBeatings = self.getPossibleBeatings()
-            self.gameInstance.figureLocations[self.convertPosToString(pos)] = self
+            self.figLocations[self.convertPosToString(pos)] = self
             return
 
         elif pos in self.possibleMoves:
-            del self.gameInstance.figureLocations[self.convertPosToString(self.pos)]
-            self.gameInstance.figureLocations[self.convertPosToString(pos)] = self
+            self.figLocations[self.convertPosToString(self.pos)] = None
+            self.figLocations[self.convertPosToString(pos)] = self
             self.gameInstance.emptySpaceLocation.remove(pos)
             self.gameInstance.emptySpaceLocation.append(self.pos)
             self.pos = pos
             self.possibleMoves = self.getPossibleMoves()
             self.possibleBeatings = self.getPossibleBeatings()
 
-
             # update figures when a move is executed
             if self.figLocations:
                 for obj in self.figLocations:
-                    self.figLocations[obj].setPosition(self.convertPosToList(obj))
+                    if self.figLocations[obj]:
+                        self.figLocations[obj].setPosition(self.convertPosToList(obj))
         else:
             return print('Invalid Move')
         return print('Moved successfully')
